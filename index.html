@@ -7,8 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
-
     
     <script>
         tailwind.config = {
@@ -28,9 +26,7 @@
             }
         }
     </script>
-    <script>
-        lucide.createIcons();
-    </script>
+    
 
     <style>
         html { scroll-behavior: smooth; }
@@ -151,8 +147,7 @@
                 <!-- Benefício 1 -->
                 <div class="text-center flex flex-col items-center">
                     <div class="w-16 h-16 rounded-full bg-offwhite flex items-center justify-center mb-6 text-destaque border border-gray-100">
-                        <i class="fa fa-key text-xl font-light"></i>
-                        <i data-lucide="camera"></i>
+                        <i data-lucide="shield-check"></i>
                     </div>
                     <h3 class="text-lg font-bold mb-2">Exclusividade</h3>
                     <p class="text-gray-500 font-light text-sm leading-relaxed">Apenas 14 apartamentos, garantindo um ambiente seleto e privado.</p>
@@ -160,7 +155,7 @@
                 <!-- Benefício 2 -->
                 <div class="text-center flex flex-col items-center">
                     <div class="w-16 h-16 rounded-full bg-offwhite flex items-center justify-center mb-6 text-destaque border border-gray-100">
-                        <i class="fa fa-map-marked-alt text-xl font-light"></i>
+                        <i data-lucide="map-pinned"></i>  
                     </div>
                     <h3 class="text-lg font-bold mb-2">Localização Privilegiada</h3>
                     <p class="text-gray-500 font-light text-sm leading-relaxed">A meros 90 metros da areia da Praia do Sol.</p>
@@ -168,7 +163,7 @@
                 <!-- Benefício 3 -->
                 <div class="text-center flex flex-col items-center">
                     <div class="w-16 h-16 rounded-full bg-offwhite flex items-center justify-center mb-6 text-destaque border border-gray-100">
-                        <i class="fa fa-chart-line text-xl font-light"></i>
+                        <i data-lucide="chart-line"></i>
                     </div>
                     <h3 class="text-lg font-bold mb-2">Alto Potencial de Valorização</h3>
                     <p class="text-gray-500 font-light text-sm leading-relaxed">Inserido em uma região litorânea em crescimento constante.</p>
@@ -176,7 +171,7 @@
                 <!-- Benefício 4 -->
                 <div class="text-center flex flex-col items-center">
                     <div class="w-16 h-16 rounded-full bg-offwhite flex items-center justify-center mb-6 text-destaque border border-gray-100">
-                        <i class="fa fa-couch text-xl font-light"></i>
+                        <i data-lucide="user-round-key"></i>
                     </div>
                     <h3 class="text-lg font-bold mb-2">Conforto e Privacidade</h3>
                     <p class="text-gray-500 font-light text-sm leading-relaxed">Poucos moradores, maximizando a tranquilidade e o uso do lazer.</p>
@@ -192,7 +187,7 @@
                 <!-- Benefício 6 -->
                 <div class="text-center flex flex-col items-center">
                     <div class="w-16 h-16 rounded-full bg-offwhite flex items-center justify-center mb-6 text-destaque border border-gray-100">
-                        <i class="fa fa-hard-hat text-xl font-light"></i>
+                        <i data-lucide="hard-hat"></i>
                     </div>
                     <h3 class="text-lg font-bold mb-2">Qualidade Construtiva HAUS</h3>
                     <p class="text-gray-500 font-light text-sm leading-relaxed">Acabamentos superiores e atenção a cada detalhe da obra.</p>
@@ -782,6 +777,10 @@
                 navbar.classList.remove('border-b-0');
             }
         });
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
     </script>
 </body>
 </html>
