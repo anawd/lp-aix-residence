@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIX Residence | Lançamento HAUS - Barra Velha</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        grafite: '#1F2328',
+                        offwhite: '#F8F7F4',
+                        cinzaclaro: '#E8E8E8',
+                        destaque: '#1D3557', // Azul Escuro Clássico
+                        whatsapp: '#25D366',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Tabs e Transições */
+        .tab-content { display: none; opacity: 0; transition: opacity 0.4s ease-in-out; }
+        .tab-content.active { display: block; opacity: 1; }
+
+        /* Custom Scrollbar minimalista */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #1D3557; border-radius: 4px; }
+        
+        /* Galeria Lazer Mosaico sem gap */
+        .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; }
+        @media (min-width: 768px) { .gallery-grid { grid-template-columns: repeat(4, 1fr); } }
+        .gallery-item { aspect-ratio: 1 / 1; overflow: hidden; position: relative; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+        .gallery-item:hover img { transform: scale(1.05); }
+    </style>
+</head>
+<body class="antialiased text-grafite bg-offwhite selection:bg-destaque selection:text-white">
+
+    <nav class="fixed w-full z-50 transition-all duration-300 border-b border-white/10 bg-transparent" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 lg:px-10">
+            <div class="flex justify-between items-center h-24">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-3xl tracking-[0.3em] font-light text-white" id="nav-logo">HAUS</span>
+                </div>
+                <!-- Links Desktop -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#beneficios" class="text-white hover:text-gray-300 transition-colors text-xs uppercase tracking-[0.2em] nav-link">O Projeto</a>
+                    <a href="#lazer" class="text-white hover:text-gray-300 transition-colors text-xs uppercase tracking-[0.2em] nav-link">Lazer</a>
+                    <a href="#plantas" class="text-white hover:text-gray-300 transition-colors text-xs uppercase tracking-[0.2em] nav-link">Plantas</a>
+                    <a href="#contato" class="border border-white text-white px-6 py-2 rounded-full text-xs uppercase tracking-widest hover:bg-white hover:text-destaque transition-colors nav-btn">Falar com Corretor</a>
+                </div>
+                <!-- Menu Mobile Btn -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white focus:outline-none">
+                        <i class="fas fa-bars text-xl" id="nav-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden bg-grafite border-t border-white/10 absolute w-full shadow-xl">
+            <a href="#beneficios" class="block px-6 py-4 text-white hover:bg-white/5 text-sm uppercase tracking-widest border-b border-white/5">O Projeto</a>
+            <a href="#lazer" class="block px-6 py-4 text-white hover:bg-white/5 text-sm uppercase tracking-widest border-b border-white/5">Lazer</a>
+            <a href="#plantas" class="block px-6 py-4 text-white hover:bg-white/5 text-sm uppercase tracking-widest border-b border-white/5">Plantas</a>
+            <a href="#contato" class="block px-6 py-4 text-white hover:bg-white/5 text-sm uppercase tracking-widest">Contato</a>
+        </div>
+    </nav>
+
+    <header class="relative h-screen flex items-center justify-center" id="home">
+        <!-- Background Render ocupando toda tela -->
+        <div class="absolute inset-0 z-0">
+            <img src="./assets/img/banner-home.jpg" alt="Fachada AIX Residence" class="w-full h-full object-cover">
+            <!-- Overlay escuro 30% -->
+            <div class="absolute inset-0 bg-black/50"></div>
+        </div>
+
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-10 flex flex-col items-center text-center mt-16">
+            <!-- Etiqueta minimalista -->
+            <div class="inline-block border border-white/30 px-5 py-1.5 rounded-full text-[10px] tracking-[0.3em] text-white uppercase mb-8 backdrop-blur-sm">
+                Lançamento Barra Velha
+            </div>
+            
+            <h1 class="text-4xl md:text-5xl lg:text-7xl text-white font-light mb-6 leading-tight tracking-tight">
+                Viver a poucos passos do mar <br>é um <span class="font-bold">privilégio para poucos.</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-white/80 mb-12 max-w-2xl font-light">
+                Apenas 14 apartamentos exclusivos em uma das regiões mais valorizadas de Barra Velha.
+            </p>
+
+            <!-- Destaques Rápidos -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mb-12 text-white border-y border-white/20 py-6 backdrop-blur-sm w-full max-w-4xl">
+                <div class="flex flex-col items-center">
+                    <span class="text-2xl lg:text-3xl font-light mb-1">14</span>
+                    <span class="text-[10px] uppercase tracking-widest text-white/70">Unidades</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span class="text-2xl lg:text-3xl font-light mb-1">90m</span>
+                    <span class="text-[10px] uppercase tracking-widest text-white/70">Da Praia</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span class="text-2xl lg:text-3xl font-light mb-1">68 a 155m²</span>
+                    <span class="text-[10px] uppercase tracking-widest text-white/70">Plantas</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span class="text-2xl lg:text-3xl font-light mb-1">Nov/28</span>
+                    <span class="text-[10px] uppercase tracking-widest text-white/70">Entrega</span>
+                </div>
+            </div>
+
+            <!-- CTAs -->
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#contato" class="bg-destaque text-white px-8 py-4 rounded-full text-center font-semibold text-xs uppercase tracking-widest hover:bg-[#15263f] transition-colors shadow-lg">
+                    Solicitar Tabela de Valores
+                </a>
+                <a href="#contato" class="bg-transparent border border-white text-white px-8 py-4 rounded-full text-center font-medium text-xs uppercase tracking-widest hover:bg-white hover:text-grafite transition-colors backdrop-blur-sm">
+                    Falar com Especialista
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="beneficios" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-10">
+            <div class="text-center mb-16">
+                <span class="text-[10px] text-destaque tracking-[0.3em] uppercase font-bold mb-4 block">Vantagens</span>
+                <h2 class="text-3xl md:text-4xl font-light text-grafite">Por que escolher o <span class="font-bold">AIX Residence?</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <!-- Benefício 1 -->
+                <div class="text-center flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-full bg-offwhite flex items-center justify-center mb-6 text-destaque border border-gray-100">
+                        <i class="fas fa-key text-xl font-light"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Exclusividade</h3>
+                    <p class="text-gray-500 font-light text-sm leading-relaxed">Apenas 14 apartamentos, garantindo um ambiente seleto e privado.</p>
+                </div>
+                <!-- Benefício 2 -->
+                <div class="text-center flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-full bg-offwhite flex items-center justify-center mb-6 text-destaque border border-gray-100">
+                        <i class="fas fa-map-marked-alt text-xl font-light"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Localização Privilegiada</h3>
+                    <p class="text-gray-500 font-light text-sm leading-relaxed">A meros 90 metros da areia da Praia do Sol.</p>
+                </div>
+                <!-- Benefício 3 -->
+                <div class="text-center flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-full bg-offwhite flex items-center justify-center mb-6 text-destaque border border-gray-100">
+                        <i class="fas fa-chart-line text-xl font-light"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Alto Potencial de Valorização</h3>
+                    <p class="text-gray-500 font-light text-sm leading-relaxed">Inserido em uma região litorânea em crescimento constante.</p>
+                </div>
+                <!-- Benefício 4 -->
+                <div class="text-center flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-full bg-offwhite flex items-center justify-center mb-6 text-destaque border border-gray-100">
+                        <i class="fas fa-couch text-xl font-light"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Conforto e Privacidade</h3>
+                    <p class="text-gray-500 font-light text-sm leading-relaxed">Poucos moradores, maximizando a tranquilidade e o uso do lazer.</p>
+                </div>
+                <!-- Benefício 5 -->
+                <div class="text-center flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-full bg-offwhite flex items-center justify-center mb-6 text-destaque border border-gray-100">
+                        <i class="fas fa-building text-xl font-light"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Arquitetura Contemporânea</h3>
+                    <p class="text-gray-500 font-light text-sm leading-relaxed">Projeto visualmente moderno, elegante e atemporal.</p>
+                </div>
+                <!-- Benefício 6 -->
+                <div class="text-center flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-full bg-offwhite flex items-center justify-center mb-6 text-destaque border border-gray-100">
+                        <i class="fas fa-hard-hat text-xl font-light"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Qualidade Construtiva HAUS</h3>
+                    <p class="text-gray-500 font-light text-sm leading-relaxed">Acabamentos superiores e atenção a cada detalhe da obra.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-offwhite border-y border-gray-200 flex flex-col lg:flex-row">
+        <!-- Mapa (Esquerda) -->
+        <div class="w-full lg:w-1/2 h-[400px] lg:h-auto relative">
+            <img src="./assets/img/mapa-aerea.png" alt="Mapa Localização" class="w-full h-full object-cover grayscale opacity-80 mix-blend-multiply">
+            <div class="absolute inset-0 bg-destaque/10"></div>
+            <!-- Pin -->
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                <i class="fas fa-map-marker-alt text-4xl text-destaque drop-shadow-md"></i>
+                <div class="mt-2 bg-white px-4 py-1 rounded shadow-lg text-xs font-bold text-grafite uppercase tracking-widest">
+                    AIX Residence
+                </div>
+            </div>
+        </div>
+        
+        <!-- Conteúdo (Direita) -->
+        <div class="w-full lg:w-1/2 p-12 lg:p-24 flex flex-col justify-center">
+            <h2 class="text-3xl font-light mb-6 text-grafite">
+                Onde sua qualidade de vida <br><span class="font-bold">encontra valorização</span>
+            </h2>
+            
+            <ul class="space-y-6 mt-8 mb-12 border-l border-destaque/20 pl-6">
+                <li class="flex items-center gap-4">
+                    <i class="fas fa-umbrella-beach text-destaque w-6 text-center"></i>
+                    <span class="font-light text-gray-600"><strong>Praia do Sol:</strong> Apenas 90m</span>
+                </li>
+                <li class="flex items-center gap-4">
+                    <i class="fas fa-city text-destaque w-6 text-center"></i>
+                    <span class="font-light text-gray-600"><strong>Itajaí:</strong> 39km</span>
+                </li>
+                <li class="flex items-center gap-4">
+                    <i class="fas fa-building text-destaque w-6 text-center"></i>
+                    <span class="font-light text-gray-600"><strong>Joinville:</strong> 55km</span>
+                </li>
+                <li class="flex items-center gap-4">
+                    <i class="fas fa-road text-destaque w-6 text-center"></i>
+                    <span class="font-light text-gray-600"><strong>Fácil Acesso:</strong> BR-101 próxima</span>
+                </li>
+            </ul>
+
+            <a href="#contato" class="border border-grafite text-grafite px-8 py-3 rounded-full text-center font-semibold text-xs uppercase tracking-widest hover:bg-grafite hover:text-white transition-colors w-max">
+                Conhecer localização completa
+            </a>
+        </div>
+    </section>
+
+    <section class="py-24 bg-grafite text-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col lg:flex-row items-center gap-16">
+            <!-- Esquerda: Textos -->
+            <div class="w-full lg:w-1/2">
+                <span class="text-[10px] text-white/50 tracking-[0.3em] uppercase font-bold mb-4 block">A Construtora</span>
+                <h2 class="text-3xl md:text-4xl font-light mb-8 leading-tight">
+                    Uma construtora construída sobre <span class="font-bold text-destaque brightness-150">experiência e confiança</span>
+                </h2>
+                
+                <div class="space-y-8 mt-10">
+                    <div class="flex gap-4">
+                        <i class="fas fa-history text-2xl text-white/50 mt-1"></i>
+                        <div>
+                            <h4 class="font-bold text-lg">Mais de 40 anos de experiência</h4>
+                            <p class="text-white/60 text-sm font-light mt-1">Know-how acumulado e sólido no mercado imobiliário.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <i class="fas fa-map text-2xl text-white/50 mt-1"></i>
+                        <div>
+                            <h4 class="font-bold text-lg">Atuação Litoral Norte</h4>
+                            <p class="text-white/60 text-sm font-light mt-1">Presente desde 2018 desenvolvendo o litoral catarinense.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <i class="fas fa-arrow-trend-up text-2xl text-white/50 mt-1"></i>
+                        <div>
+                            <h4 class="font-bold text-lg">Foco em Valorização</h4>
+                            <p class="text-white/60 text-sm font-light mt-1">Projetos estratégicos para garantir o melhor retorno.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <i class="fas fa-gem text-2xl text-white/50 mt-1"></i>
+                        <div>
+                            <h4 class="font-bold text-lg">Projetos de Alto Padrão</h4>
+                            <p class="text-white/60 text-sm font-light mt-1">Excelência em materiais, design e acabamentos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Direita: Fotos e Logos -->
+            <div class="w-full lg:w-1/2 grid grid-cols-2 gap-4">
+                <div class="aspect-[4/5] rounded bg-white/5 border border-white/10 overflow-hidden relative group">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Diretoria HAUS" class="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 transition duration-500">
+                    <div class="absolute bottom-4 left-4 right-4 text-center">
+                        <span class="bg-grafite/90 px-3 py-1 rounded text-[10px] uppercase tracking-widest block">Diretoria</span>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <div class="flex-1 bg-white/5 border border-white/10 rounded flex items-center justify-center p-6 grayscale hover:grayscale-0 transition">
+                        <i class="fas fa-building text-4xl text-white/30"></i>
+                        <span class="text-xs uppercase tracking-widest text-white/50 ml-3">Obra 01</span>
+                    </div>
+                    <div class="flex-1 bg-white/5 border border-white/10 rounded flex items-center justify-center p-6 grayscale hover:grayscale-0 transition">
+                        <i class="fas fa-city text-4xl text-white/30"></i>
+                        <span class="text-xs uppercase tracking-widest text-white/50 ml-3">Obra 02</span>
+                    </div>
+                    <div class="flex-1 bg-destaque/30 border border-destaque/50 rounded flex items-center justify-center p-6 text-center">
+                        <span class="text-xs uppercase tracking-[0.2em] font-bold text-white leading-relaxed">Empreendimentos Entregues</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-light text-grafite">Diferenciais do <span class="font-bold">Empreendimento</span></h2>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <!-- Cards de Diferenciais -->
+                <div class="border border-gray-100 bg-offwhite p-6 rounded text-center flex flex-col items-center justify-center min-h-[140px] hover:-translate-y-1 transition-transform">
+                    <i class="fas fa-user-shield text-2xl text-destaque mb-3"></i>
+                    <span class="text-xs font-bold uppercase tracking-wide">Reconhecimento Facial</span>
+                </div>
+                <div class="border border-gray-100 bg-offwhite p-6 rounded text-center flex flex-col items-center justify-center min-h-[140px] hover:-translate-y-1 transition-transform">
+                    <i class="fas fa-couch text-2xl text-destaque mb-3"></i>
+                    <span class="text-xs font-bold uppercase tracking-wide">Hall Mobiliado</span>
+                </div>
+                <div class="border border-gray-100 bg-offwhite p-6 rounded text-center flex flex-col items-center justify-center min-h-[140px] hover:-translate-y-1 transition-transform">
+                    <i class="fas fa-video text-2xl text-destaque mb-3"></i>
+                    <span class="text-xs font-bold uppercase tracking-wide">Monitoramento Câmeras</span>
+                </div>
+                <div class="border border-gray-100 bg-offwhite p-6 rounded text-center flex flex-col items-center justify-center min-h-[140px] hover:-translate-y-1 transition-transform">
+                    <i class="fas fa-elevator text-2xl text-destaque mb-3"></i>
+                    <span class="text-xs font-bold uppercase tracking-wide">2 Elevadores</span>
+                </div>
+                <div class="border border-gray-100 bg-offwhite p-6 rounded text-center flex flex-col items-center justify-center min-h-[140px] hover:-translate-y-1 transition-transform">
+                    <i class="fas fa-box text-2xl text-destaque mb-3"></i>
+                    <span class="text-xs font-bold uppercase tracking-wide">Hobby Box Privativo</span>
+                </div>
+                
+                <div class="border border-gray-100 bg-offwhite p-6 rounded text-center flex flex-col items-center justify-center min-h-[140px] hover:-translate-y-1 transition-transform">
+                    <i class="fas fa-lock text-2xl text-destaque mb-3"></i>
+                    <span class="text-xs font-bold uppercase tracking-wide">Fechadura Eletrônica</span>
+                </div>
+                <div class="border border-gray-100 bg-offwhite p-6 rounded text-center flex flex-col items-center justify-center min-h-[140px] hover:-translate-y-1 transition-transform">
+                    <i class="fas fa-tachometer-alt text-2xl text-destaque mb-3"></i>
+                    <span class="text-xs font-bold uppercase tracking-wide">Medidores Individuais</span>
+                </div>
+                <div class="border border-gray-100 bg-offwhite p-6 rounded text-center flex flex-col items-center justify-center min-h-[140px] hover:-translate-y-1 transition-transform">
+                    <i class="fas fa-snowflake text-2xl text-destaque mb-3"></i>
+                    <span class="text-xs font-bold uppercase tracking-wide">Infra. Split</span>
+                </div>
+                <div class="border border-gray-100 bg-offwhite p-6 rounded text-center flex flex-col items-center justify-center min-h-[140px] hover:-translate-y-1 transition-transform md:col-span-1 lg:col-span-2">
+                    <i class="fas fa-wifi text-2xl text-destaque mb-3"></i>
+                    <span class="text-xs font-bold uppercase tracking-wide">Infraestrutura para Internet Alta Velocidade</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lazer" class="bg-offwhite py-24 pb-0">
+        <div class="max-w-7xl mx-auto px-6 lg:px-10 mb-16 flex flex-col lg:flex-row items-end justify-between gap-8">
+            <div class="w-full lg:w-2/3">
+                <span class="text-[10px] text-destaque tracking-[0.3em] uppercase font-bold mb-4 block">Bem-Estar</span>
+                <h2 class="text-3xl md:text-4xl font-light text-grafite mb-6">
+                    Um espaço pensado para <br><span class="font-bold">aproveitar cada momento</span>
+                </h2>
+                <div class="flex flex-wrap gap-x-8 gap-y-4 text-sm font-medium text-gray-600">
+                    <span class="flex items-center gap-2"><i class="fas fa-check text-destaque"></i> Piscina com prainha</span>
+                    <span class="flex items-center gap-2"><i class="fas fa-check text-destaque"></i> Cascata</span>
+                    <span class="flex items-center gap-2"><i class="fas fa-check text-destaque"></i> Deck integrado</span>
+                    <span class="flex items-center gap-2"><i class="fas fa-check text-destaque"></i> Lounge externo</span>
+                    <span class="flex items-center gap-2"><i class="fas fa-check text-destaque"></i> Salão de festas equipado</span>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/3 text-left lg:text-right">
+                <a href="#contato" class="bg-destaque text-white px-8 py-4 rounded-full text-center font-semibold text-xs uppercase tracking-widest hover:bg-[#15263f] transition-colors inline-block">
+                    Agendar Visita
+                </a>
+            </div>
+        </div>
+
+        <!-- Galeria Lazer (Grid Mosaico Sem Gap) -->
+        <div class="gallery-grid">
+            <div class="gallery-item group">
+                <img src="./assets/img/piscina.png" alt="Piscina">
+                <div class="absolute inset-0 bg-grafite/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span class="text-sm uppercase tracking-widest font-medium text-white">Piscina com prainha e cascata</span>
+                </div>
+            </div>
+            <div class="gallery-item group">
+                <img src="./assets/img/salao-festas.png" alt="Salão de Festas">
+                <div class="absolute inset-0 bg-grafite/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span class="text-sm uppercase tracking-widest font-medium text-white">Salão de Festas</span>
+                </div>
+            </div>
+            <div class="gallery-item group">
+                <img src="./assets/img/salao-festas-sinuca.png" alt="Salão de Festas Sinuca">
+                <div class="absolute inset-0 bg-grafite/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span class="text-sm uppercase tracking-widest font-medium text-white">Salão de Festas Sinuca</span>
+                </div>
+            </div>
+            <div class="gallery-item group">
+                <img src="./assets/img/loung-externo.png" alt="Loung Externo">
+                <div class="absolute inset-0 bg-grafite/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span class="text-sm uppercase tracking-widest font-medium text-white">Loung Externo</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="plantas" class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-light text-grafite">
+                    Plantas Inteligentes <span class="font-bold">e Versáteis</span>
+                </h2>
+            </div>
+
+            <!-- Tabs Navigation (Estilo Pílulas Minimalistas) -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <button class="tab-btn bg-offwhite border border-gray-200 text-gray-600 hover:bg-gray-100 px-6 py-2.5 rounded-full font-medium text-xs tracking-widest uppercase transition-all" onclick="openTab(event, 'tipo01')">
+                    Tipo 01 (88m²)
+                </button>
+                <button class="tab-btn bg-destaque text-white px-6 py-2.5 rounded-full font-medium text-xs tracking-widest uppercase transition-all" onclick="openTab(event, 'tipo02')">
+                    Tipo 02 (68m²)
+                </button>
+                
+                <button class="tab-btn bg-offwhite border border-gray-200 text-gray-600 hover:bg-gray-100 px-6 py-2.5 rounded-full font-medium text-xs tracking-widest uppercase transition-all" onclick="openTab(event, 'giardino')">
+                    Giardino (119m²)
+                </button>
+                <button class="tab-btn bg-offwhite border border-gray-200 text-gray-600 hover:bg-gray-100 px-6 py-2.5 rounded-full font-medium text-xs tracking-widest uppercase transition-all" onclick="openTab(event, 'cobertura')">
+                    Cobertura (155m²)
+                </button>
+            </div>
+
+            <!-- Tabs Content -->
+            <div class="relative bg-offwhite border border-gray-100 rounded-xl overflow-hidden">
+                
+                <!-- Tipo 02 -->
+                <div id="tipo02" class="tab-content active p-8 md:p-12">
+                    <div class="flex flex-col md:flex-row items-center gap-10">
+                        <div class="w-full md:w-1/3">
+                            <h3 class="text-destaque text-3xl font-bold mb-6">TIPO 02</h3>
+                            <ul class="space-y-5 text-gray-700 text-sm">
+                                <li class="flex items-center gap-4 border-b border-gray-200 pb-2"><i class="fas fa-ruler-combined text-destaque w-4"></i> <span class="font-bold">68m²</span> Área</li>
+                                <li class="flex items-center gap-4 border-b border-gray-200 pb-2"><i class="fas fa-bed text-destaque w-4"></i> 2 Suítes</li>
+                                <li class="flex items-center gap-4 border-b border-gray-200 pb-2"><i class="fas fa-car text-destaque w-4"></i> 1 Vaga</li>
+                                <li class="flex items-center gap-4"><i class="fas fa-fire text-destaque w-4"></i> Churrasqueira</li>
+                            </ul>
+                            <a href="#contato" class="mt-8 block w-full border border-destaque text-destaque px-6 py-3 rounded-full text-center font-bold text-[10px] uppercase tracking-widest hover:bg-destaque hover:text-white transition-colors">
+                                Receber Planta Completa
+                            </a>
+                        </div>
+                        <div class="w-full md:w-2/3 flex justify-center items-center h-[300px] md:h-[450px] bg-white rounded border border-gray-100 shadow-sm">
+                            <span class="text-gray-300 font-light uppercase tracking-widest text-center">
+                                <i class="fas fa-drafting-compass block text-4xl mb-4 text-gray-200"></i>
+                                Esboço Planta 68m²
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tipo 01 -->
+                <div id="tipo01" class="tab-content p-8 md:p-12">
+                    <div class="flex flex-col md:flex-row items-center gap-10">
+                        <div class="w-full md:w-1/3">
+                            <h3 class="text-destaque text-3xl font-bold mb-6">TIPO 01</h3>
+                            <ul class="space-y-5 text-gray-700 text-sm">
+                                <li class="flex items-center gap-4 border-b border-gray-200 pb-2"><i class="fas fa-ruler-combined text-destaque w-4"></i> <span class="font-bold">88m²</span> Área</li>
+                                <li class="flex items-center gap-4 border-b border-gray-200 pb-2"><i class="fas fa-bed text-destaque w-4"></i> 2 Suítes</li>
+                                <li class="flex items-center gap-4 border-b border-gray-200 pb-2"><i class="fas fa-expand text-destaque w-4"></i> Living Ampliado</li>
+                                <li class="flex items-center gap-4 border-b border-gray-200 pb-2"><i class="fa fa-bath text-destaque w-4"></i> Lavabo</li>
+                                <li class="flex items-center gap-4 border-b border-gray-200 pb-2"><i class="fas fa-washing-machine text-destaque w-4"></i> Área de serviço</li>
+                                <li class="flex items-center gap-4 border-b border-gray-200 pb-2"><i class="fas fa-hot-tub text-destaque w-4"></i> Área técnica</li>
+                                <li class="flex items-center gap-4 border-b border-gray-200 pb-2"><i class="fas fa-fire text-destaque w-4"></i> Churrasqueira a carvão</li>
+                                <li class="flex items-center gap-4 border-b border-gray-200 pb-2"><i class="fas fa-expand text-destaque w-4"></i> Hobby box</li>
+                                <li class="flex items-center gap-4"><i class="fas fa-car text-destaque w-4"></i> 1 Vaga</li>
+                                
+                            </ul>
+                            <a href="#contato" class="mt-8 block w-full border border-destaque text-destaque px-6 py-3 rounded-full text-center font-bold text-[10px] uppercase tracking-widest hover:bg-destaque hover:text-white transition-colors">
+                                Receber Planta Completa
+                            </a>
+                        </div>
+                        <div class="w-full md:w-2/3 flex justify-center items-center h-[300px] md:h-[450px] bg-white rounded border border-gray-100 shadow-sm">
+                            <!--<span class="text-gray-300 font-light uppercase tracking-widest text-center">
+                                <i class="fas fa-drafting-compass block text-4xl mb-4 text-gray-200"></i>
+                                Esboço Planta 88m²
+                            </span>-->
+                            <img src="./assets/img/planta-tipo01.png" alt="Planta Tipo 01" class="w-full h-full object-contain">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Giardino -->
+                <div id="giardino" class="tab-content p-8 md:p-12">
+                    <div class="flex flex-col md:flex-row items-center gap-10">
+                        <div class="w-full md:w-1/3">
+                            <h3 class="text-destaque text-3xl font-bold mb-6">GIARDINO</h3>
+                            <ul class="space-y-5 text-gray-700 text-sm">
+                                <li class="flex items-center gap-4 border-b border-gray-200 pb-2"><i class="fas fa-ruler-combined text-destaque w-4"></i> <span class="font-bold">119m²</span> Área</li>
+                                <li class="flex items-center gap-4 border-b border-gray-200 pb-2"><i class="fas fa-tree text-destaque w-4"></i> Terraço Privativo</li>
+                                <li class="flex items-center gap-4"><i class="fas fa-hot-tub text-destaque w-4"></i> Infraestrutura para SPA</li>
+                            </ul>
+                            <a href="#contato" class="mt-8 block w-full border border-destaque text-destaque px-6 py-3 rounded-full text-center font-bold text-[10px] uppercase tracking-widest hover:bg-destaque hover:text-white transition-colors">
+                                Receber Planta Completa
+                            </a>
+                        </div>
+                        <div class="w-full md:w-2/3 flex justify-center items-center h-[300px] md:h-[450px] bg-white rounded border border-gray-100 shadow-sm">
+                            <span class="text-gray-300 font-light uppercase tracking-widest text-center">
+                                <i class="fas fa-drafting-compass block text-4xl mb-4 text-gray-200"></i>
+                                Esboço Planta Giardino
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cobertura -->
+                <div id="cobertura" class="tab-content p-8 md:p-12 relative">
+                    <div class="absolute top-0 right-0 bg-destaque text-white text-[10px] px-6 py-1 uppercase tracking-widest rounded-bl-lg font-bold">Unidade Exclusiva</div>
+                    <div class="flex flex-col md:flex-row items-center gap-10 mt-4 md:mt-0">
+                        <div class="w-full md:w-1/3">
+                            <h3 class="text-destaque text-3xl font-bold mb-6">COBERTURA</h3>
+                            <ul class="space-y-5 text-gray-700 text-sm">
+                                <li class="flex items-center gap-4 border-b border-gray-200 pb-2"><i class="fas fa-ruler-combined text-destaque w-4"></i> <span class="font-bold">155m²</span> Área</li>
+                                <li class="flex items-center gap-4 border-b border-gray-200 pb-2"><i class="fas fa-bed text-destaque w-4"></i> 3 Suítes</li>
+                                <li class="flex items-center gap-4 border-b border-gray-200 pb-2"><i class="fas fa-sun text-destaque w-4"></i> Terraço com SPA</li>
+                                <li class="flex items-center gap-4"><i class="fas fa-car text-destaque w-4"></i> 2 Vagas</li>
+                            </ul>
+                            <a href="#contato" class="mt-8 block w-full border border-destaque text-destaque px-6 py-3 rounded-full text-center font-bold text-[10px] uppercase tracking-widest hover:bg-destaque hover:text-white transition-colors">
+                                Receber Planta Completa
+                            </a>
+                        </div>
+                        <div class="w-full md:w-2/3 flex justify-center items-center h-[300px] md:h-[450px] bg-white rounded border border-gray-100 shadow-sm">
+                            <span class="text-gray-300 font-light uppercase tracking-widest text-center">
+                                <i class="fas fa-drafting-compass block text-4xl mb-4 text-gray-200"></i>
+                                Esboço Planta Cobertura
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-cinzaclaro">
+        <div class="max-w-7xl mx-auto px-6 lg:px-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-light text-grafite">
+                    Cada detalhe pensado para <br><span class="font-bold">valorizar seu patrimônio</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Conforto -->
+                <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100">
+                    <h3 class="text-destaque text-lg font-bold mb-6 flex items-center gap-3"><i class="fas fa-couch"></i> Conforto</h3>
+                    <ul class="space-y-4 text-gray-600 text-sm">
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-destaque/50 mt-1"></i> Piso vinílico</li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-destaque/50 mt-1"></i> Persianas integradas</li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-destaque/50 mt-1"></i> Aquecimento a gás</li>
+                    </ul>
+                </div>
+                <!-- Tecnologia -->
+                <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100">
+                    <h3 class="text-destaque text-lg font-bold mb-6 flex items-center gap-3"><i class="fas fa-microchip"></i> Tecnologia</h3>
+                    <ul class="space-y-4 text-gray-600 text-sm">
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-destaque/50 mt-1"></i> Fechadura eletrônica</li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-destaque/50 mt-1"></i> Infraestrutura para internet</li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-destaque/50 mt-1"></i> Infraestrutura Split</li>
+                    </ul>
+                </div>
+                <!-- Sofisticação -->
+                <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-100">
+                    <h3 class="text-destaque text-lg font-bold mb-6 flex items-center gap-3"><i class="fas fa-gem"></i> Sofisticação</h3>
+                    <ul class="space-y-4 text-gray-600 text-sm">
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-destaque/50 mt-1"></i> Rebaixo em gesso</li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-destaque/50 mt-1"></i> Granitos e mármores</li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check text-destaque/50 mt-1"></i> Esquadrias premium</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 lg:px-10">
+            <div class="text-center mb-16">
+                <span class="text-[10px] text-destaque tracking-[0.3em] uppercase font-bold mb-4 block">Segurança e Retorno</span>
+                <h2 class="text-3xl md:text-4xl font-light text-grafite">
+                    Quem escolhe a HAUS <span class="font-bold">investe com segurança</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                <!-- Depoimento e Dados -->
+                <div class="space-y-8">
+                    <div class="bg-offwhite p-8 rounded border border-gray-100 relative">
+                        <i class="fas fa-quote-left text-4xl text-gray-200 absolute top-4 left-4"></i>
+                        <p class="text-gray-600 italic relative z-10 pl-6 text-sm leading-relaxed">
+                            "Acompanhamos a entrega do último empreendimento da HAUS e o acabamento superou as expectativas. É a garantia de que o AIX Residence será um marco na Praia do Sol. O retorno sobre o investimento já é visível."
+                        </p>
+                        <div class="mt-6 flex items-center gap-4 pl-6">
+                            <div class="w-10 h-10 bg-gray-300 rounded-full"></div>
+                            <div>
+                                <span class="block text-sm font-bold text-grafite">Cliente Investidor</span>
+                                <span class="block text-[10px] text-gray-500 uppercase">Itajaí - SC</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-destaque text-white p-8 rounded flex items-center justify-between shadow-lg">
+                        <div>
+                            <span class="block text-3xl font-bold mb-1">+45%</span>
+                            <span class="text-xs font-light tracking-wider opacity-80">Valorização Média Litoral (Últimos Anos)</span>
+                        </div>
+                        <i class="fas fa-arrow-trend-up text-4xl opacity-50"></i>
+                    </div>
+                </div>
+
+                <!-- Obras Reais -->
+                <div class="grid grid-cols-2 gap-4">
+                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Obra Entregue 1" class="w-full h-full object-cover rounded shadow">
+                    <img src="https://images.unsplash.com/photo-1600607687959-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Obra Entregue 2" class="w-full h-full object-cover rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="relative py-32 flex items-center justify-center">
+        <!-- Fundo Praia com Overlay Grafite -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Praia" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-grafite/90 mix-blend-multiply"></div>
+        </div>
+
+        <div class="relative z-10 w-full max-w-2xl mx-auto px-6">
+            <div class="text-center mb-10 text-white">
+                <h2 class="text-3xl md:text-4xl font-light mb-4">
+                    Viver com a brisa do mar e uma vista <span class="font-bold text-white">que inspira tranquilidade.</span>
+                </h2>
+                <p class="text-white/70 font-light text-sm md:text-base">
+                    Receba agora a tabela atualizada, disponibilidade das unidades e condições especiais de lançamento.
+                </p>
+            </div>
+            
+            <!-- Formulário -->
+            <form class="bg-white p-8 rounded-lg shadow-2xl space-y-5" onsubmit="event.preventDefault(); alert('Solicitação enviada com sucesso! Um especialista entrará em contato.');">
+                <div>
+                    <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2 font-bold">Nome Completo</label>
+                    <input type="text" required class="w-full px-4 py-3 bg-offwhite border border-gray-200 rounded text-grafite focus:outline-none focus:border-destaque focus:ring-1 focus:ring-destaque transition-all text-sm">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2 font-bold">WhatsApp</label>
+                        <input type="tel" required class="w-full px-4 py-3 bg-offwhite border border-gray-200 rounded text-grafite focus:outline-none focus:border-destaque focus:ring-1 focus:ring-destaque transition-all text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2 font-bold">E-mail</label>
+                        <input type="email" required class="w-full px-4 py-3 bg-offwhite border border-gray-200 rounded text-grafite focus:outline-none focus:border-destaque focus:ring-1 focus:ring-destaque transition-all text-sm">
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-destaque text-white font-bold py-4 rounded mt-2 text-xs uppercase tracking-widest hover:bg-[#15263f] transition-colors shadow-lg">
+                    Quero receber as informações
+                </button>
+                <p class="text-[10px] text-center text-gray-400 mt-4">Garantimos o sigilo dos seus dados.</p>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-grafite pt-16 pb-8 text-white border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                <div class="md:col-span-1">
+                    <span class="text-3xl tracking-[0.3em] font-light text-white mb-4 block">HAUS</span>
+                    <p class="text-white/40 text-xs font-light leading-relaxed mb-4">
+                        Construtora e Incorporadora focada em alto padrão no Litoral Norte Catarinense.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-xs uppercase tracking-[0.2em] font-bold text-white/70 mb-4">Contato</h4>
+                    <ul class="space-y-2 text-sm text-white/50 font-light">
+                        <li><a href="#" class="hover:text-whatsapp transition flex items-center gap-2"><i class="fab fa-whatsapp"></i> (47) 99999-9999</a></li>
+                        <li><a href="#" class="hover:text-white transition flex items-center gap-2"><i class="far fa-envelope"></i> contato@haus.com.br</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs uppercase tracking-[0.2em] font-bold text-white/70 mb-4">Redes Sociais</h4>
+                    <ul class="space-y-2 text-sm text-white/50 font-light">
+                        <li><a href="#" class="hover:text-white transition flex items-center gap-2"><i class="fab fa-instagram"></i> @hausconstrutora</a></li>
+                        <li><a href="#" class="hover:text-white transition flex items-center gap-2"><i class="fab fa-facebook-f"></i> /hausconstrutora</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs uppercase tracking-[0.2em] font-bold text-white/70 mb-4">Endereço</h4>
+                    <p class="text-sm text-white/50 font-light leading-relaxed">
+                        Itajubá, Barra Velha - SC<br>
+                        CEP 88390-000
+                    </p>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col items-center justify-center text-center">
+                <p class="text-white/30 text-[10px] uppercase tracking-widest mb-2 font-bold">
+                    CRECI 0000J &bull; INCORPORAÇÃO R.X-XXX.XXX
+                </p>
+                <p class="text-white/20 text-[10px] max-w-2xl leading-relaxed">
+                    As imagens aqui apresentadas são perspectivas artísticas virtuais. Os móveis, equipamentos e paisagismo não fazem parte do contrato de compra e venda. Consulte memorial descritivo.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FAB: Floating Action Button WhatsApp -->
+    <a href="#" class="fixed bottom-6 right-6 w-14 h-14 bg-whatsapp text-white rounded-full flex items-center justify-center shadow-2xl z-50 hover:scale-110 transition-transform duration-300">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <script>
+        // Lógica de Tabs Minimalista (Plantas)
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            
+            // Ocultar todos os conteúdos
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            
+            // Resetar todos os botões para estilo inativo (Off White)
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = "tab-btn bg-offwhite border border-gray-200 text-gray-600 hover:bg-gray-100 px-6 py-2.5 rounded-full font-medium text-xs tracking-widest uppercase transition-all";
+            }
+            
+            // Mostrar conteúdo atual
+            var activeTab = document.getElementById(tabName);
+            activeTab.style.display = "block";
+            // Delay para animação
+            setTimeout(() => { activeTab.classList.add("active"); }, 10);
+            
+            // Estilizar o botão clicado para ativo (Azul Destaque)
+            evt.currentTarget.className = "tab-btn bg-destaque text-white px-6 py-2.5 rounded-full font-medium text-xs tracking-widest uppercase transition-all shadow-md";
+        }
+
+        // Toggle Mobile Menu
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        const mobileLinks = menu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            var logo = document.getElementById('nav-logo');
+            var links = document.getElementsByClassName('nav-link');
+            var btnNav = document.querySelector('.nav-btn');
+            var iconMobile = document.getElementById('nav-icon');
+            
+            if (window.scrollY > 50) {
+                // Background sólido escuro para dar contraste Premium
+                navbar.classList.add('shadow-md', 'bg-grafite');
+                navbar.classList.remove('bg-transparent', 'border-white/10');
+                navbar.classList.add('border-b-0'); // Remover borda no scroll
+            } else {
+                // Volta ao topo transparente
+                navbar.classList.remove('shadow-md', 'bg-grafite');
+                navbar.classList.add('bg-transparent', 'border-white/10');
+                navbar.classList.remove('border-b-0');
+            }
+        });
+    </script>
+</body>
+</html>
