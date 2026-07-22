@@ -289,15 +289,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Direita: Fotos e Logos -->
-            <div class="w-full lg:w-1/2 grid grid-cols-2 gap-4">
-                <div class="flex flex-col gap-4">
-                    <div class="flex-1 bg-destaque/30 border border-destaque/50 rounded flex items-center justify-center p-6 text-center">
-                        <span class="text-xs uppercase tracking-[0.2em] font-bold text-white leading-relaxed">Empreendimentos Entregues</span>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -430,7 +421,7 @@
             <div class="relative bg-offwhite border border-gray-100 rounded-xl overflow-hidden">
                 
                 <!-- Tipo 02 -->
-                <div id="tipo02" class="tab-content active p-8 md:p-12">
+                <div id="tipo02" class="planta-pane tab-content active p-8 md:p-12">
                     <div class="flex flex-col md:flex-row items-center gap-10">
                         <div class="w-full md:w-1/3">
                             <h3 class="text-destaque text-3xl font-bold mb-6">TIPO 02</h3>
@@ -450,14 +441,52 @@
                                 Receber Planta Completa
                             </a>
                         </div>
-                        <div class="w-full md:w-2/3 flex justify-center items-center h-[300px] md:h-[450px] bg-white rounded border border-gray-100 shadow-sm">
-                            <img src="./assets/img/planta-tipo02.png" alt="Planta Tipo 02" class="w-full h-full object-contain">
+
+                         <!-- Carrossel de Imagens Tipo 02  -->
+                        <div class="lg:col-span-2 w-full">
+                            <div class="carousel-container relative rounded-xl overflow-hidden shadow-md bg-white border border-cinzaclaro group">
+                                <div class="carousel-track flex transition-transform duration-500 ease-out">
+                                    <div class="w-full flex-shrink-0 relative cursor-pointer" onclick="openModal('./assets/img/planta-tipo02.png?auto=format&fit=crop&q=80&w=1200', 'Planta Tipo 02')">
+                                        <img src="./assets/img/planta-tipo02.png?auto=format&fit=crop&q=80&w=1000" alt="Planta Tipo 02" class="w-full h-[320px] md:h-[420px] object-contain">
+                                        <div class="absolute bottom-4 left-4 bg-grafite/80 backdrop-blur-sm text-white px-3 py-1.5 rounded text-xs font-medium">Planta Baixa Tipo 02</div>
+                                    </div>
+
+                                    <div class="w-full flex-shrink-0 relative cursor-pointer" onclick="openModal('./assets/img/LIVING-TIPO-02-1.png?auto=format&fit=crop&q=80&w=1200', 'Tipo 02 Living')">
+                                        <img src="./assets/img/LIVING-TIPO-02-1.png" alt="Tipo 02 Living" class="w-full h-[320px] md:h-[420px] object-cover">
+                                        <div class="absolute bottom-4 left-4 bg-grafite/80 backdrop-blur-sm text-white px-3 py-1.5 rounded text-xs font-medium">Tipo 02 Living</div>
+                                    </div>
+
+                                    <div class="w-full flex-shrink-0 relative cursor-pointer" onclick="openModal('./assets/img/LIVING-TIPO-02-2.png?auto=format&fit=crop&q=80&w=1200', 'Tipo 02 Living')">
+                                        <img src="./assets/img/LIVING-TIPO-02-2.png" alt="Tipo 02 Living" class="w-full h-[320px] md:h-[420px] object-cover">
+                                        <div class="absolute bottom-4 left-4 bg-grafite/80 backdrop-blur-sm text-white px-3 py-1.5 rounded text-xs font-medium">Tipo 02 Living</div>
+                                    </div>
+                                    <div class="w-full flex-shrink-0 relative cursor-pointer" onclick="openModal('./assets/img/SUITE-TIPO-02.png?auto=format&fit=crop&q=80&w=1200', 'Tipo 02 Suíte')">
+                                        <img src="./assets/img/SUITE-TIPO-02.png" alt="Tipo 02 Suíte" class="w-full h-[320px] md:h-[420px] object-cover">
+                                        <div class="absolute bottom-4 left-4 bg-grafite/80 backdrop-blur-sm text-white px-3 py-1.5 rounded text-xs font-medium">Tipo 02 Suíte</div>
+                                    </div>
+                                </div>
+                                <button class="prev-btn absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white text-grafite rounded-full shadow-lg flex items-center justify-center transition-all z-10">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="next-btn absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white text-grafite rounded-full shadow-lg flex items-center justify-center transition-all z-10">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                                <div class="slide-counter absolute top-4 right-4 bg-grafite/70 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-light">1 / 4</div>
+                            </div>
+                            <!-- Miniaturas -->
+                            <div class="flex gap-3 mt-4">
+                                <img src="./assets/img/planta-tipo02.png?auto=format&fit=crop&q=80&w=300" alt="Thumb 1" class="thumb-img w-20 h-16 object-cover rounded cursor-pointer border-2 border-destaque opacity-100 transition-all" onclick="goToSlide(this, 0)">
+                                <img src="./assets/img/LIVING-TIPO-02-1.png?auto=format&fit=crop&q=80&w=300" alt="Thumb 2" class="thumb-img w-20 h-16 object-cover rounded cursor-pointer border-2 border-transparent opacity-60 hover:opacity-100 transition-all" onclick="goToSlide(this, 1)">
+                                <img src="./assets/img/LIVING-TIPO-02-2.png?auto=format&fit=crop&q=80&w=300" alt="Thumb 3" class="thumb-img w-20 h-16 object-cover rounded cursor-pointer border-2 border-transparent opacity-60 hover:opacity-100 transition-all" onclick="goToSlide(this, 2)">
+                                <img src="./assets/img/SUITE-TIPO-02.png" alt="Thumb 4" class="thumb-img w-20 h-16 object-cover rounded cursor-pointer border-2 border-transparent opacity-60 hover:opacity-100 transition-all" onclick="goToSlide(this, 3)">
+                            </div>
                         </div>
+
                     </div>
                 </div>
 
                 <!-- Tipo 01 -->
-                <div id="tipo01" class="tab-content p-8 md:p-12">
+                <div id="tipo01" class="planta-pane tab-content active p-8 md:p-12">
                     <div class="flex flex-col md:flex-row items-center gap-10">
                         <div class="w-full md:w-1/3">
                             <h3 class="text-destaque text-3xl font-bold mb-6">TIPO 01</h3>
@@ -477,14 +506,55 @@
                                 Receber Planta Completa
                             </a>
                         </div>
-                        <div class="w-full md:w-2/3 flex justify-center items-center h-[300px] md:h-[450px] bg-white rounded border border-gray-100 shadow-sm">
-                            <img src="./assets/img/planta-tipo01.png" alt="Planta Tipo 01" class="w-full h-full object-contain">
+
+                        <!-- Carrossel de Imagens Tipo 01  -->
+                        <div class="lg:col-span-2 w-full">
+                            <div class="carousel-container relative rounded-xl overflow-hidden shadow-md bg-white border border-cinzaclaro group">
+                                <div class="carousel-track flex transition-transform duration-500 ease-out">
+                                    <div class="w-full flex-shrink-0 relative cursor-pointer" onclick="openModal('./assets/img/planta-tipo01.png?auto=format&fit=crop&q=80&w=1200', 'Planta Tipo 01')">
+                                        <img src="./assets/img/planta-tipo01.png?auto=format&fit=crop&q=80&w=1000" alt="Planta Tipo 01" class="w-full h-[320px] md:h-[420px] object-contain">
+                                        <div class="absolute bottom-4 left-4 bg-grafite/80 backdrop-blur-sm text-white px-3 py-1.5 rounded text-xs font-medium">Planta Baixa Tipo 01</div>
+                                    </div>
+
+                                    <div class="w-full flex-shrink-0 relative cursor-pointer" onclick="openModal('./assets/img/COBERTURA-LIVING-1-2.png?auto=format&fit=crop&q=80&w=1200', 'Tipo 01 Living')">
+                                        <img src="./assets/img/TIPO-01-LIVING-1.png" alt="Tipo 01 Living" class="w-full h-[320px] md:h-[420px] object-cover">
+                                        <div class="absolute bottom-4 left-4 bg-grafite/80 backdrop-blur-sm text-white px-3 py-1.5 rounded text-xs font-medium">Tipo 01 Living</div>
+                                    </div>
+
+                                    <div class="w-full flex-shrink-0 relative cursor-pointer" onclick="openModal('./assets/img/COBERTURA-LIVING-1-2.png?auto=format&fit=crop&q=80&w=1200', 'Tipo 01 Living')">
+                                        <img src="./assets/img/TIPO-01-LIVING-2.png" alt="Tipo 01 Living" class="w-full h-[320px] md:h-[420px] object-cover">
+                                        <div class="absolute bottom-4 left-4 bg-grafite/80 backdrop-blur-sm text-white px-3 py-1.5 rounded text-xs font-medium">Tipo 01 Living</div>
+                                    </div>
+                                    <div class="w-full flex-shrink-0 relative cursor-pointer" onclick="openModal('./assets/img/TIPO-01-SUITE.png?auto=format&fit=crop&q=80&w=1200', 'Tipo 01 Suíte')">
+                                        <img src="./assets/img/TIPO-01-SUITE.png" alt="Tipo 01 Suíte" class="w-full h-[320px] md:h-[420px] object-cover">
+                                        <div class="absolute bottom-4 left-4 bg-grafite/80 backdrop-blur-sm text-white px-3 py-1.5 rounded text-xs font-medium">Tipo 01 Suíte</div>
+                                    </div>
+
+                                   
+
+                                </div>
+                                <button class="prev-btn absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white text-grafite rounded-full shadow-lg flex items-center justify-center transition-all z-10">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="next-btn absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white text-grafite rounded-full shadow-lg flex items-center justify-center transition-all z-10">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                                <div class="slide-counter absolute top-4 right-4 bg-grafite/70 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-light">1 / 4</div>
+                            </div>
+                            <!-- Miniaturas -->
+                            <div class="flex gap-3 mt-4">
+                                <img src="./assets/img/planta-tipo01.png?auto=format&fit=crop&q=80&w=300" alt="Thumb 1" class="thumb-img w-20 h-16 object-cover rounded cursor-pointer border-2 border-destaque opacity-100 transition-all" onclick="goToSlide(this, 0)">
+                                <img src="./assets/img/TIPO-01-LIVING-1.png?auto=format&fit=crop&q=80&w=300" alt="Thumb 2" class="thumb-img w-20 h-16 object-cover rounded cursor-pointer border-2 border-transparent opacity-60 hover:opacity-100 transition-all" onclick="goToSlide(this, 1)">
+                                <img src="./assets/img/TIPO-01-LIVING-2.png?auto=format&fit=crop&q=80&w=300" alt="Thumb 3" class="thumb-img w-20 h-16 object-cover rounded cursor-pointer border-2 border-transparent opacity-60 hover:opacity-100 transition-all" onclick="goToSlide(this, 2)">
+                                <img src="./assets/img/TIPO-01-SUITE.png" alt="Thumb 4" class="thumb-img w-20 h-16 object-cover rounded cursor-pointer border-2 border-transparent opacity-60 hover:opacity-100 transition-all" onclick="goToSlide(this, 3)">
+                            </div>
                         </div>
+
                     </div>
                 </div>
 
                 <!-- Giardino -->
-                <div id="giardino" class="tab-content p-8 md:p-12">
+                <div id="giardino" class="planta-pane tab-content p-8 md:p-12">
                     <div class="flex flex-col md:flex-row items-center gap-10">
                         <div class="w-full md:w-1/3">
                             <h3 class="text-destaque text-3xl font-bold mb-6">GIARDINO</h3>
@@ -506,14 +576,40 @@
                                 Receber Planta Completa
                             </a>
                         </div>
-                        <div class="w-full md:w-2/3 flex justify-center items-center h-[300px] md:h-[450px] bg-white rounded border border-gray-100 shadow-sm">
-                            <img src="./assets/img/planta-giardino.png" alt="Planta Tipo 01" class="w-full h-full object-contain">
+                    
+                        <!-- Carrossel de Imagens Giardino -->
+                        <div class="lg:col-span-2 w-full">
+                            <div class="carousel-container relative rounded-xl overflow-hidden shadow-md bg-white border border-cinzaclaro group">
+                                <div class="carousel-track flex transition-transform duration-500 ease-out">
+                                    <div class="w-full flex-shrink-0 relative cursor-pointer" onclick="openModal('./assets/img/planta-giardino.png?auto=format&fit=crop&q=80&w=1200', 'Planta Baixa Giardino')">
+                                        <img src="./assets/img/planta-giardino.png?auto=format&fit=crop&q=80&w=1000" alt="Planta Baixa Giardino" class="w-full h-[320px] md:h-[420px] object-cover">
+                                        <div class="absolute bottom-4 left-4 bg-grafite/80 backdrop-blur-sm text-white px-3 py-1.5 rounded text-xs font-medium">Planta Baixa Giardino</div>
+                                    </div>
+
+                                    <div class="w-full flex-shrink-0 relative cursor-pointer" onclick="openModal('./assets/img/giardino.png?auto=format&fit=crop&q=80&w=1200', 'Giardino')">
+                                        <img src="./assets/img/giardino.png" alt="Giardino" class="w-full h-[320px] md:h-[420px] object-cover">
+                                        <div class="absolute bottom-4 left-4 bg-grafite/80 backdrop-blur-sm text-white px-3 py-1.5 rounded text-xs font-medium">Giardino</div>
+                                    </div>
+                                </div>
+                                <button class="prev-btn absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white text-grafite rounded-full shadow-lg flex items-center justify-center transition-all z-10">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="next-btn absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white text-grafite rounded-full shadow-lg flex items-center justify-center transition-all z-10">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                                <div class="slide-counter absolute top-4 right-4 bg-grafite/70 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-light">1 / 2</div>
+                            </div>
+                            <!-- Miniaturas -->
+                            <div class="flex gap-3 mt-4">
+                                <img src="./assets/img/planta-cobertura.png?auto=format&fit=crop&q=80&w=300" alt="Thumb 1" class="thumb-img w-20 h-16 object-cover rounded cursor-pointer border-2 border-destaque opacity-100 transition-all" onclick="goToSlide(this, 0)">
+                                <img src="./assets/img/giardino.png?auto=format&fit=crop&q=80&w=300" alt="Thumb 2" class="thumb-img w-20 h-16 object-cover rounded cursor-pointer border-2 border-transparent opacity-60 hover:opacity-100 transition-all" onclick="goToSlide(this, 1)">
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Cobertura -->
-                <div id="cobertura" class="tab-content p-8 md:p-12 relative">
+                <div id="cobertura" class="planta-pane tab-content p-8 md:p-12 relative">
                     <div class="absolute top-0 right-0 bg-destaque text-white text-[10px] px-6 py-1 uppercase tracking-widest rounded-bl-lg font-bold">Unidade Exclusiva</div>
                     <div class="flex flex-col md:flex-row items-center gap-10 mt-4 md:mt-0">
                         <div class="w-full md:w-1/3">
@@ -535,8 +631,52 @@
                                 Receber Planta Completa
                             </a>
                         </div>
-                        <div class="w-full md:w-2/3 flex justify-center items-center h-[300px] md:h-[450px] bg-white rounded border border-gray-100 shadow-sm">
-                            <img src="./assets/img/planta-cobertura.png" alt="Planta Tipo 01" class="w-full h-full object-contain">
+                       
+                        <!-- Carrossel de Imagens Cobertura -->
+                        <div class="lg:col-span-2 w-full">
+                            <div class="carousel-container relative rounded-xl overflow-hidden shadow-md bg-white border border-cinzaclaro group">
+                                <div class="carousel-track flex transition-transform duration-500 ease-out">
+                                    <div class="w-full flex-shrink-0 relative cursor-pointer" onclick="openModal('./assets/img/planta-cobertura.png?auto=format&fit=crop&q=80&w=1200', 'Planta Cobertura')">
+                                        <img src="./assets/img/planta-cobertura.png?auto=format&fit=crop&q=80&w=1000" alt="Planta Cobertura" class="w-full h-[320px] md:h-[420px] object-cover">
+                                        <div class="absolute bottom-4 left-4 bg-grafite/80 backdrop-blur-sm text-white px-3 py-1.5 rounded text-xs font-medium">Planta Baixa</div>
+                                    </div>
+
+                                    <div class="w-full flex-shrink-0 relative cursor-pointer" onclick="openModal('./assets/img/COBERTURA-LIVING-1-2.png?auto=format&fit=crop&q=80&w=1200', 'Cobertura Living')">
+                                        <img src="./assets/img/COBERTURA-LIVING-1-2.png" alt="Cobertura Living" class="w-full h-[320px] md:h-[420px] object-cover">
+                                        <div class="absolute bottom-4 left-4 bg-grafite/80 backdrop-blur-sm text-white px-3 py-1.5 rounded text-xs font-medium">Cobertura Living</div>
+                                    </div>
+
+                                    <div class="w-full flex-shrink-0 relative cursor-pointer" onclick="openModal('./assets/img/COBERTURA-LIVING-1-2.png?auto=format&fit=crop&q=80&w=1200', 'Cobertura Living')">
+                                        <img src="./assets/img/COBERTURA-LIVING-2.png" alt="Cobertura Living" class="w-full h-[320px] md:h-[420px] object-cover">
+                                        <div class="absolute bottom-4 left-4 bg-grafite/80 backdrop-blur-sm text-white px-3 py-1.5 rounded text-xs font-medium">Cobertura Living</div>
+                                    </div>
+                                    <div class="w-full flex-shrink-0 relative cursor-pointer" onclick="openModal('./assets/img/COBERTURA-LIVING-3.png?auto=format&fit=crop&q=80&w=1200', 'Cobertura Living')">
+                                        <img src="./assets/img/COBERTURA-LIVING-3.png" alt="Cobertura Living" class="w-full h-[320px] md:h-[420px] object-cover">
+                                        <div class="absolute bottom-4 left-4 bg-grafite/80 backdrop-blur-sm text-white px-3 py-1.5 rounded text-xs font-medium">Cobertura Living</div>
+                                    </div>
+
+                                    <div class="w-full flex-shrink-0 relative cursor-pointer" onclick="openModal('./assets/img/COBERTURA-SUITE.png?auto=format&fit=crop&q=80&w=1200', 'Cobertura Suíte')">
+                                        <img src="./assets/img/COBERTURA-SUITE.png" alt="Cobertura Suíte" class="w-full h-[320px] md:h-[420px] object-cover">
+                                        <div class="absolute bottom-4 left-4 bg-grafite/80 backdrop-blur-sm text-white px-3 py-1.5 rounded text-xs font-medium">Cobertura Suíte</div>
+                                    </div>
+
+                                </div>
+                                <button class="prev-btn absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white text-grafite rounded-full shadow-lg flex items-center justify-center transition-all z-10">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="next-btn absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white text-grafite rounded-full shadow-lg flex items-center justify-center transition-all z-10">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                                <div class="slide-counter absolute top-4 right-4 bg-grafite/70 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-light">1 / 5</div>
+                            </div>
+                            <!-- Miniaturas -->
+                            <div class="flex gap-3 mt-4">
+                                <img src="./assets/img/planta-cobertura.png?auto=format&fit=crop&q=80&w=300" alt="Thumb 1" class="thumb-img w-20 h-16 object-cover rounded cursor-pointer border-2 border-destaque opacity-100 transition-all" onclick="goToSlide(this, 0)">
+                                <img src="./assets/img/COBERTURA-LIVING-1-2.png?auto=format&fit=crop&q=80&w=300" alt="Thumb 2" class="thumb-img w-20 h-16 object-cover rounded cursor-pointer border-2 border-transparent opacity-60 hover:opacity-100 transition-all" onclick="goToSlide(this, 1)">
+                                <img src="./assets/img/COBERTURA-LIVING-2.png?auto=format&fit=crop&q=80&w=300" alt="Thumb 3" class="thumb-img w-20 h-16 object-cover rounded cursor-pointer border-2 border-transparent opacity-60 hover:opacity-100 transition-all" onclick="goToSlide(this, 2)">
+                                <img src="./assets/img/COBERTURA-LIVING-3.png" alt="Thumb 4" class="thumb-img w-20 h-16 object-cover rounded cursor-pointer border-2 border-transparent opacity-60 hover:opacity-100 transition-all" onclick="goToSlide(this, 3)">
+                                <img src="./assets/img/COBERTURA-SUITE.png" alt="Thumb 5" class="thumb-img w-20 h-16 object-cover rounded cursor-pointer border-2 border-transparent opacity-60 hover:opacity-100 transition-all" onclick="goToSlide(this, 4)">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -544,6 +684,15 @@
             </div>
         </div>
     </section>
+
+    <!-- MODAL DE AMPLIAÇÃO DE IMAGEM -->
+    <div id="image-modal" class="fixed inset-0 z-50 bg-black/90 hidden backdrop-blur-md flex flex-col items-center justify-center p-4">
+        <button onclick="closeModal()" class="absolute top-6 right-6 text-white/80 hover:text-white text-3xl transition-colors">
+            <i class="fas fa-times"></i>
+        </button>
+        <img id="modal-img" src="" alt="Imagem Ampliada" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl mb-4">
+        <p id="modal-caption" class="text-white/90 text-sm font-light tracking-wide"></p>
+    </div>
 
     <section class="py-24 bg-cinzaclaro">
         <div class="max-w-7xl mx-auto px-6 lg:px-10">
@@ -782,6 +931,92 @@
                 navbar.classList.add('bg-transparent', 'border-white/10');
                 navbar.classList.remove('border-b-0');
             }
+        });
+
+         // LÓGICA DOS CARROSSEIS
+        document.addEventListener('DOMContentLoaded', () => {
+            const carousels = document.querySelectorAll('.carousel-container');
+
+            carousels.forEach(carousel => {
+                const track = carousel.querySelector('.carousel-track');
+                const slides = carousel.querySelectorAll('.flex-shrink-0');
+                const prevBtn = carousel.querySelector('.prev-btn');
+                const nextBtn = carousel.querySelector('.next-btn');
+                const counter = carousel.querySelector('.slide-counter');
+                const pane = carousel.closest('.planta-pane');
+                const thumbs = pane ? pane.querySelectorAll('.thumb-img') : [];
+
+                let currentIndex = 0;
+
+                function updateCarousel(index) {
+                    currentIndex = index;
+                    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                    
+                    if (counter) {
+                        counter.textContent = `${currentIndex + 1} / ${slides.length}`;
+                    }
+
+                    // Atualiza destaque da miniatura
+                    thumbs.forEach((thumb, i) => {
+                        if (i === currentIndex) {
+                            thumb.classList.add('border-destaque', 'opacity-100');
+                            thumb.classList.remove('border-transparent', 'opacity-60');
+                        } else {
+                            thumb.classList.remove('border-destaque', 'opacity-100');
+                            thumb.classList.add('border-transparent', 'opacity-60');
+                        }
+                    });
+                }
+
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const newIdx = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+                        updateCarousel(newIdx);
+                    });
+                }
+
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const newIdx = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
+                        updateCarousel(newIdx);
+                    });
+                }
+
+                // Salva função de atualização no elemento para acesso pelas miniaturas
+                carousel.updateSlide = updateCarousel;
+            });
+        });
+
+        // NAVEGAÇÃO VIA MINIATURA
+        function goToSlide(element, slideIndex) {
+            const pane = element.closest('.planta-pane');
+            const carousel = pane.querySelector('.carousel-container');
+            if (carousel && carousel.updateSlide) {
+                carousel.updateSlide(slideIndex);
+            }
+        }
+
+        // MODAL DE AMPLIAÇÃO
+        function openModal(imgSrc, captionText) {
+            const modal = document.getElementById('image-modal');
+            const modalImg = document.getElementById('modal-img');
+            const modalCaption = document.getElementById('modal-caption');
+
+            modalImg.src = imgSrc;
+            modalCaption.textContent = captionText || '';
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('image-modal');
+            modal.classList.add('hidden');
+        }
+
+        // Fechar modal ao pressionar ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
         });
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
