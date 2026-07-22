@@ -292,12 +292,6 @@
 
             <!-- Direita: Fotos e Logos -->
             <div class="w-full lg:w-1/2 grid grid-cols-2 gap-4">
-                <div class="aspect-[4/5] rounded bg-white/5 border border-white/10 overflow-hidden relative group">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Diretoria HAUS" class="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 transition duration-500">
-                    <div class="absolute bottom-4 left-4 right-4 text-center">
-                        <span class="bg-grafite/90 px-3 py-1 rounded text-[10px] uppercase tracking-widest block">Diretoria</span>
-                    </div>
-                </div>
                 <div class="flex flex-col gap-4">
                     <div class="flex-1 bg-destaque/30 border border-destaque/50 rounded flex items-center justify-center p-6 text-center">
                         <span class="text-xs uppercase tracking-[0.2em] font-bold text-white leading-relaxed">Empreendimentos Entregues</span>
@@ -600,22 +594,33 @@
                 </h2>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-                <!-- Dados -->
-                <div class="space-y-8">
-                    <div class="bg-destaque text-white p-8 rounded flex items-center justify-between shadow-lg">
-                        <div>
-                            <span class="block text-3xl font-bold mb-1">+45%</span>
-                            <span class="text-xs font-light tracking-wider opacity-80">Valorização Média Litoral (Últimos Anos)</span>
-                        </div>
-                        <i class="fas fa-arrow-trend-up text-4xl opacity-50"></i>
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-offwhite p-6 rounded-xl border border-cinzaclaro">
+                    <img src="./assets/img/obra-las-olas.png" alt="Las Olas Residence" class="w-full object-cover rounded-lg mb-4 h-3/4">
+                    <h3 class="text-lg font-bold">Las Olas Residence</h3>
+                    <span class="text-xs font-semibold text-destaque uppercase tracking-wider">SETEMBRO 2025</span>
                 </div>
+                <div class="bg-offwhite p-6 rounded-xl border border-cinzaclaro">
+                    <img src="./assets/img/obra-weston.jpg" alt="Weston Residence" class="w-full object-cover rounded-lg mb-4 h-3/4">
+                    <h3 class="text-lg font-bold">Weston Residence</h3>
+                    <span class="text-xs font-semibold text-destaque uppercase tracking-wider">NOVEMBRO 2023</span>
+                </div>
+                <div class="bg-offwhite p-6 rounded-xl border border-cinzaclaro">
+                    <img src="./assets/img/obra-palm-beach.jpg" alt="PALM BEACH" class="w-full object-cover rounded-lg mb-4 h-3/4">
+                    <h3 class="text-lg font-bold">Palm Beach Residence</h3>
+                    <span class="text-xs font-semibold text-destaque uppercase tracking-wider">JUNHO 2020</span>
+                </div>
+            </div>
 
-                <!-- Obras Reais -->
-                <div class="grid grid-cols-2 gap-4">
-                    <img src="./assets/img/obra-weston.jpg" alt="Weston" class="w-full h-full object-cover rounded shadow">
-                    <img src="./assets/img/obra-las-olas.png" alt="Las Olas" class="w-full h-full object-cover rounded shadow">
+            <!-- Dados Valorização -->
+            <div class="bg-destaque text-white p-8 md:p-12 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-2">Média de Valorização na Região</h3>
+                    <p class="text-gray-300 font-light text-sm max-w-xl">Imóveis no litoral de Barra Velha registraram alta constante acima da inflação nos últimos 5 anos.</p>
+                </div>
+                <div class="text-center md:text-right flex-shrink-0">
+                    <span class="text-5xl font-extrabold text-destaque text-white tracking-tight block">+45%</span>
+                    <span class="text-xs text-gray-400 font-light uppercase tracking-wider">Estimativa de ciclo completo da obra</span>
                 </div>
             </div>
         </div>
