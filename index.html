@@ -18,6 +18,11 @@
                         cinzaclaro: '#E8E8E8',
                         destaque: '#1D3557', // Azul Escuro Clássico
                         whatsapp: '#25D366',
+                        'off-white': '#FDFCFB', // Fundo principal da imagem
+                        'cor-texto': '#202A36', // Cor do texto principal
+                        'bege-claro': '#E9E1D6', // Cor Bege para botões ativos
+                        'bege-hover': '#DFD5C6', // Tom de hover para o Bege    // Cor de fundo do contêiner da galeria
+                        'cinza-claro': '#EFEFEF', // Cinza claro
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -47,6 +52,33 @@
         .gallery-item { aspect-ratio: 1 / 1; overflow: hidden; position: relative; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
         .gallery-item:hover img { transform: scale(1.05); }
+
+        /* Estilos específicos para a animação suave e efeitos */
+        .premium-gallery-slide {
+            transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+        }
+
+        .premium-gallery-slide.hidden-slide {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .img-hover-effect {
+            transition: transform 0.6s ease;
+        }
+        
+        .img-container:hover .img-hover-effect {
+            transform: scale(1.04);
+        }
+
+        /* Esconder scrollbar no carrossel mobile */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none; /* IE e Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
     </style>
 </head>
 <body class="antialiased text-grafite bg-offwhite selection:bg-destaque selection:text-white">
@@ -368,7 +400,7 @@
         </div>
 
         <!-- Galeria Lazer (Grid Mosaico Sem Gap) -->
-        <div class="gallery-grid">
+        <!--<div class="gallery-grid">
             <div class="gallery-item group">
                 <img src="./assets/img/piscina.png" alt="Piscina">
                 <div class="absolute inset-0 bg-grafite/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -393,7 +425,104 @@
                     <span class="text-sm uppercase tracking-widest font-medium text-white">Loung Externo</span>
                 </div>
             </div>
+        </div>-->
+
+        <!-- Menu de Categorias: Botões Arredondados Centrados -->
+            <nav class="w-full border-t border-gray-100 pt-8 mt-8" aria-label="Categorias da Galeria">
+                <ul class="flex justify-center items-center gap-3 md:gap-4 flex-wrap" role="tablist">
+                    <li role="presentation">
+                        <button 
+                            id="tab-fachadas"
+                            role="tab"
+                            aria-selected="true"
+                            aria-controls="gallery-grid"
+                            class="category-btn active-btn text-xs tracking-caps uppercase px-6 py-3 rounded-full font-medium transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-bege-hover "
+                            onclick="selectCategory('fachadas')"
+                        >
+                            Fachadas
+                        </button>
+                    </li>
+                    <li role="presentation">
+                        <button 
+                            id="tab-comuns"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="gallery-grid"
+                            class="category-btn text-xs tracking-caps uppercase px-6 py-3 rounded-full font-medium transition-all duration-300 border border-white hover:border-bege hover:bg-white/50 focus:outline-none focus:ring-1 focus:ring-bege-hover text-cor-texto"
+                            onclick="selectCategory('comuns')"
+                        >
+                            Áreas Comuns
+                        </button>
+                    </li>
+
+                </ul>
+            </nav>
+
+            <!-- Área da Galeria com Fundo Grafite -->
+        <div class="bg-offwhite w-full py-16 px-4 md:px-0">
+            <div class="max-w-[1500px] mx-auto relative group">
+                
+                <!-- Estrutura da Galeria: Flex-Mobile, Grid-Desktop -->
+                <div 
+                    id="gallery-grid" 
+                    class="flex md:grid md:grid-cols-10 items-center gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar md:overflow-visible py-4"
+                    role="region"
+                    aria-live="polite"
+                >
+                    
+                    <!-- Imagem Lateral Esquerda (Vertical - 20%) -->
+                    <article 
+                        id="slide-left"
+                        class="premium-gallery-slide img-container flex-none w-[75vw] md:w-auto md:col-span-2 aspect-[3/4] relative overflow-hidden rounded-[2px] snap-center shadow-2xl cursor-pointer"
+                        onclick="navigateGallery(-1)"
+                    >
+                        <img id="img-left" src="" alt="" loading="lazy" class="w-full h-full object-cover img-hover-effect">
+                        <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-opacity duration-300"></div>
+                    </article>
+
+                    <!-- Imagem Principal Central (Destaque - 60%) -->
+                    <article 
+                        id="slide-center"
+                        class="premium-gallery-slide img-container flex-none w-[85vw] md:w-auto md:col-span-6 aspect-[16/10] relative overflow-hidden rounded-[2px] snap-center shadow-2xl z-10"
+                    >
+                        <img id="img-center" src="" alt="" loading="lazy" class="w-full h-full object-cover img-hover-effect">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <span id="label-category" class="text-[10px] tracking-caps-sm uppercase text-bege-claro mb-1 block"></span>
+                            <h3 id="label-title" class="text-lg md:text-xl font-light text-white uppercase tracking-caps-sm"></h3>
+                        </div>
+                    </article>
+
+                    <!-- Imagem Lateral Direita (Vertical - 20%) -->
+                    <article 
+                        id="slide-right"
+                        class="premium-gallery-slide img-container flex-none w-[75vw] md:w-auto md:col-span-2 aspect-[3/4] relative overflow-hidden rounded-[2px] snap-center shadow-2xl cursor-pointer"
+                        onclick="navigateGallery(1)"
+                    >
+                        <img id="img-right" src="" alt="" loading="lazy" class="w-full h-full object-cover img-hover-effect">
+                        <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-opacity duration-300"></div>
+                    </article>
+
+                </div>
+
+                <!-- Setas de Navegação Discretas (Sobre as laterais) -->
+                <button 
+                    onclick="navigateGallery(-1)" 
+                    aria-label="Imagem Anterior"
+                    class="absolute left-4 md:-left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-off-white/70 hover:bg-off-white rounded-full flex items-center justify-center text-cor-texto shadow-lg transition-all focus:outline-none focus:ring-1 focus:ring-bege-hover"
+                >
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <button 
+                    onclick="navigateGallery(1)" 
+                    aria-label="Próxima Imagem"
+                    class="absolute right-4 md:-right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-off-white/70 hover:bg-off-white rounded-full flex items-center justify-center text-cor-texto shadow-lg transition-all focus:outline-none focus:ring-1 focus:ring-bege-hover"
+                >
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
+                </button>
+            </div>
         </div>
+        
     </section>
 
     <section id="plantas" class="py-24 bg-white">
@@ -1019,6 +1148,119 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeModal();
         });
+    </script>
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
+        // Dados de Exemplo das Categorias (6 imagens por categoria)
+        const galleryData = {
+            fachadas: [
+                { url: './assets/img/foto-fachada-predio.jpg?q=80&w=1400', title: 'Fachada Predio' },
+                { url: './assets/img/foto-fachada-predio2.jpg?q=80&w=1400?q=80&w=1400', title: 'Fachada Predio' },
+                { url: './assets/img/foto-fachada-sala-comercial.jpg?q=80&w=1400?q=80&w=1400', title: 'Sala Comercial' },
+                { url: './assets/img/hall-elevador.png?q=80&w=1400', title: 'Hall Elevador' },
+                { url: './assets/img/hall-entrada.png?q=80&w=1400', title: 'Hall Entrada' },
+            ],
+            comuns: [
+                { url: './assets/img/salao-festas-sinuca.png?q=80&w=1400', title: 'Salão de Festas Sinuca' },
+                { url: './assets/img/salao-festas.png?q=80&w=1400', title: 'Salão de Festas' },
+                { url: './assets/img/loung-externo.png?q=80&w=1400', title: 'Loung externo' },
+                { url: './assets/img/piscina.png?q=80&w=1400', title: 'Piscina' },
+            ],
+
+        };
+
+        // Estado do Carrossel
+        let currentCategory = 'fachadas';
+        let currentIndex = 0;
+
+        // Elementos do DOM
+        const imgLeft = document.getElementById('img-left');
+        const imgCenter = document.getElementById('img-center');
+        const imgRight = document.getElementById('img-right');
+        const labelCategory = document.getElementById('label-category');
+        const labelTitle = document.getElementById('label-title');
+        const slides = document.querySelectorAll('.premium-gallery-slide');
+
+        // Inicialização
+        function initGallery() {
+            updateGalleryDisplay(false); // Atualiza sem animação inicial
+        }
+
+        // Função para selecionar categoria (Tabs)
+        function selectCategory(category) {
+            if (currentCategory === category) return; // Evita reprocessar a mesma
+
+            currentCategory = category;
+            currentIndex = 0; // Reseta o índice ao trocar de categoria
+
+            // Atualiza os botões das categorias (Tabs)
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('bg-bege-claro', 'text-cor-texto', 'active-btn');
+                btn.classList.add('border', 'border-white', 'text-cor-texto');
+                btn.setAttribute('aria-selected', 'false');
+            });
+
+            const activeBtn = document.getElementById(`tab-${category}`);
+            activeBtn.classList.remove('border', 'border-white');
+            activeBtn.classList.add('bg-bege-claro', 'text-cor-texto', 'active-btn');
+            activeBtn.setAttribute('aria-selected', 'true');
+
+            updateGalleryDisplay(true); // Atualiza com animação de fade
+        }
+
+        // Função para navegar entre as imagens
+        function navigateGallery(direction) {
+            const listLength = galleryData[currentCategory].length;
+            // Cálculo do índice circular (0, 1, 2, 3, 4, 5, 0, ...)
+            currentIndex = (currentIndex + direction + listLength) % listLength;
+            updateGalleryDisplay(true); // Atualiza com animação de fade
+        }
+
+        // Função para atualizar o DOM da galeria
+        function updateGalleryDisplay(withAnimation) {
+            const list = galleryData[currentCategory];
+            const listLength = list.length;
+
+            // Calcula os índices das imagens laterais
+            const leftIndex = (currentIndex - 1 + listLength) % listLength;
+            const rightIndex = (currentIndex + 1) % listLength;
+
+            // Prepara os dados atuais
+            const centerItem = list[currentIndex];
+            const leftItem = list[leftIndex];
+            const rightItem = list[rightIndex];
+
+            // Aplica animação se solicitado
+            if (withAnimation) {
+                slides.forEach(slide => slide.classList.add('hidden-slide'));
+
+                // Pequeno delay para a troca de imagem (300ms)
+                setTimeout(() => {
+                    updateImageSources(leftItem, centerItem, rightItem);
+                    slides.forEach(slide => slide.classList.remove('hidden-slide'));
+                }, 300);
+            } else {
+                updateImageSources(leftItem, centerItem, rightItem);
+            }
+        }
+
+        // Helper para trocar as sources das imagens e legendas
+        function updateImageSources(left, center, right) {
+            imgLeft.src = left.url;
+            imgLeft.alt = `Prévia de ${left.title}`;
+
+            imgCenter.src = center.url;
+            imgCenter.alt = center.title;
+
+            imgRight.src = right.url;
+            imgRight.alt = `Prévia de ${right.title}`;
+
+            labelCategory.textContent = currentCategory;
+            labelTitle.textContent = center.title;
+        }
+
+        // Inicia a galeria após carregar o DOM
+        window.addEventListener('DOMContentLoaded', initGallery);
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
